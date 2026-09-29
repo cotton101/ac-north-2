@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 import { services } from "@/content/services";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import Logo from "./Logo";
 import ServiceIcon, { SERVICE_COLOURS } from "./ServiceIcon";
 
@@ -40,14 +41,13 @@ export default function Header() {
   // Stop the page scrolling behind the menu, and let Escape close it.
   useEffect(() => {
     if (!open) return;
-    const { overflow } = document.body.style;
-    document.body.style.overflow = "hidden";
+    lockScroll();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpenOn(null);
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = overflow;
+      unlockScroll();
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
@@ -99,7 +99,7 @@ export default function Header() {
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        <div className="wrap grid h-full content-start gap-10 overflow-y-auto overscroll-contain pb-10 pt-[6.5rem] md:grid-cols-12 md:content-center md:pt-[5.5rem]">
+        <div data-scroll-allow className="wrap grid h-full content-start gap-10 overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-10 pt-[6.5rem] md:grid-cols-12 md:[align-content:safe_center] md:pt-[5.5rem]">
           {/* Preview panel: changes with the link under the pointer, like the reference menu's pictures */}
           <div className="hidden md:col-span-6 md:block">
             <div className="relative flex aspect-[4/3] w-full flex-col justify-end overflow-hidden rounded-2xl p-10">

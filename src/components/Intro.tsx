@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { INTRO_KEY } from "@/lib/site";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 const WORDS = [
   { text: "Maps", colour: "#47b1fb" },
@@ -35,18 +36,23 @@ export default function Intro() {
       return () => clearTimeout(t);
     }
 
-    document.body.style.overflow = "hidden";
+    lockScroll();
+    let locked = true;
+    const release = () => {
+      if (locked) unlockScroll();
+      locked = false;
+    };
     const tick = setInterval(() => setI((n) => Math.min(n + 1, WORDS.length - 1)), STEP);
     const leave = setTimeout(() => setPhase("leaving"), STEP * WORDS.length + 250);
     const done = setTimeout(() => {
       setPhase("gone");
-      document.body.style.overflow = "";
+      release();
     }, STEP * WORDS.length + 1050);
     return () => {
       clearInterval(tick);
       clearTimeout(leave);
       clearTimeout(done);
-      document.body.style.overflow = "";
+      release();
     };
   }, []);
 
