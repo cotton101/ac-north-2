@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@theme {
+  /* Layout and effects follow mintobranding.com; colours come from the blue AC North logo:
+     sky #47b1fb, blue #016be2, navy #012d6e. */
+  --color-paper: #0b1424;
+  --color-stone: #111d31;
+  --color-ink: #f3f7fc;
+  --color-muted: #a3b2c7;
+  --color-rule: #1f2e47;
+  --color-accent: #47b1fb;
+  --color-accent-deep: #9dd6ff;
+  --color-slate: #016be2;
+  --color-night: #070e1a;
+  --color-sky: #47b1fb;
+  --color-blue: #016be2;
+  --color-navy: #012d6e;
+  --color-light: #f5f8fc;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-weight-semibold: 600;
+
+  --animate-spin-y: spin-y 9s linear infinite;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-wheel: wheel 1.8s ease-in-out infinite;
+}
+
+@keyframes spin-y {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-4%, 8%, 0) scale(0.96);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+@keyframes word-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Later pages in the same visit skip the opening screen (set by an inline script in the layout). */
+.intro-seen .intro {
+  display: none;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-sky);
+  color: var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sky);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@utility wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-sky);
+}
+
+@utility text-link {
+  color: var(--color-sky);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-sky) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  &:hover {
+    color: var(--color-accent-deep);
+    text-decoration-color: var(--color-accent-deep);
+  }
+}
+
+/* Pill buttons, as on the reference site. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-blue);
+  background: var(--color-blue);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+  &:hover {
+    background: #0158bb;
+    border-color: #0158bb;
+  }
+}
+
+@utility btn-outline {
+  background: transparent;
+  border-color: color-mix(in srgb, currentColor 55%, transparent);
+  color: inherit;
+  &:hover {
+    background: transparent;
+    border-color: currentColor;
+  }
+}
+
+/* "READ MORE ↗" links. */
+@utility more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@utility card {
+  border: 1px solid var(--color-rule);
+  border-radius: 1rem;
+  background: var(--color-stone);
+}
+
+/* Soft blue light behind page headings. */
+@utility glow {
+  background:
+    radial-gradient(55rem 32rem at 8% -12%, rgb(1 107 226 / 0.38), transparent 70%),
+    radial-gradient(40rem 26rem at 92% 0%, rgb(71 177 251 / 0.14), transparent 70%),
+    var(--color-paper);
+}
+
+h1 {
+  text-transform: uppercase;
+}
