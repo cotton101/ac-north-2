@@ -75,18 +75,22 @@ const WEEK_ONE: TeaserItem[] = [
 const FAQ_PICKS = ["What is local SEO?", "How quickly will I rank?", "Why is SEO ongoing?"];
 
 // Unsplash photos (free for commercial use under the Unsplash licence), served from Unsplash.
+// Candid, low-light photos that match each question: searching, checking results, working on.
 const FAQ_PHOTOS = [
   {
-    src: "https://images.unsplash.com/photo-1753351052363-53ce102830eb?w=1200&q=75",
-    alt: "A café owner in an apron standing in her shop",
+    src: "https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?w=1200&q=75",
+    alt: "A woman searching on her phone at dusk",
+    position: "55% 40%",
   },
   {
-    src: "https://images.unsplash.com/photo-1719937206140-c4b208c78aa7?w=1200&q=75",
-    alt: "A man working on a laptop in a bright café",
+    src: "https://images.unsplash.com/photo-1550614806-51d8db524675?w=1200&q=75",
+    alt: "A man checking his phone in a dimly lit café",
+    position: "70% 35%",
   },
   {
-    src: "https://images.unsplash.com/photo-1624775054619-bf29a387fecc?w=1200&q=75",
-    alt: "A smiling woman in a white shirt",
+    src: "https://images.unsplash.com/photo-1758520144864-fb42371d9e60?w=1200&q=75",
+    alt: "A woman working late at her laptop",
+    position: "40% 40%",
   },
 ];
 
@@ -213,12 +217,13 @@ export default function Home() {
             {picks.map((f, i) => (
               <li key={f.question}>
                 <Link href="/faq" className="group block">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#dde6f1]">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-night">
                     <Image
                       src={FAQ_PHOTOS[i].src}
                       alt={FAQ_PHOTOS[i].alt}
                       fill
                       sizes="(min-width: 768px) 30vw, 100vw"
+                      style={{ objectPosition: FAQ_PHOTOS[i].position }}
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>

@@ -45,7 +45,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-GB" className={`${poppins.variable} h-full`} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
             __html: `try{if(sessionStorage.getItem("${INTRO_KEY}")==="1")document.documentElement.classList.add("intro-seen")}catch(e){}`,
