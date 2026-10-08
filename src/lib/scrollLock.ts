@@ -1,5 +1,5 @@
 /**
- * Stop the page scrolling behind the menu or the opening screen, without touching
+ * Stop the page scrolling behind the menu, without touching
  * the scrollbar: hiding it would make the page wider and the layout jump. Instead,
  * wheel, touch and keyboard scrolling are blocked, except inside an element marked
  * with data-scroll-allow that has room to scroll (such as a long menu on a phone).

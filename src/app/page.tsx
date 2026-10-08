@@ -133,8 +133,9 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="md:col-span-5">
-            <SpinningLogo className="mx-auto w-[70%] max-w-[26rem] md:w-full" />
+          {/* The spinning logo is for larger screens only. */}
+          <div className="hidden md:col-span-5 md:block">
+            <SpinningLogo className="mx-auto w-full max-w-[26rem]" />
           </div>
         </div>
 

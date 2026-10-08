@@ -67,21 +67,6 @@
   }
 }
 
-@keyframes word-up {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Later pages in the same visit skip the opening screen (set by an inline script in the layout). */
-.intro-seen .intro {
-  display: none;
-}
 
 html {
   background: var(--color-paper);

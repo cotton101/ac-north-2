@@ -3,8 +3,7 @@ import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import Intro from "@/components/Intro";
-import { INTRO_KEY, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -46,12 +45,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-GB" className={`${poppins.variable} h-full`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem("${INTRO_KEY}")==="1")document.documentElement.classList.add("intro-seen")}catch(e){}`,
-          }}
-        />
-        <Intro />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-3 focus:py-2 focus:text-paper"

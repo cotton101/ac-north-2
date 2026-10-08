@@ -13,6 +13,3 @@ export const NAV = [
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
 ] as const;
-
-// Session-storage key marking that the opening screen has been shown.
-export const INTRO_KEY = "acn-intro-seen";
